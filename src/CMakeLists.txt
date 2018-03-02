@@ -21,17 +21,6 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 set(ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-## Choose to enable g3log or not: on/off
-#set(ENABLE_LOGGING on)
-
-#if(ENABLE_LOGGING)
-#	message( "-- Enable logging with g3log -- Yes" )
-#	message( "-- Deafult log directory: quad/control/log " )
-#	include_directories(${CMAKE_SOURCE_DIR}/src/third_party/g3log/src)
-#else(ENABLE_LOGGING)
-#	message( "-- Enable logging with g3log -- No" )
-#endif(ENABLE_LOGGING)
-
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -39,6 +28,5 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 ## Add sub source directories
 add_subdirectory(vrep_sim)
 add_subdirectory(controller)
-#add_subdirectory(third_party)
-#add_subdirectory(logging)
+add_subdirectory(apps)
 

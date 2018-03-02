@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libvrep_sim.a  CMakeFiles/vrep_sim.dir/vrep_lib/remoteApi/extApi.c.o CMakeFiles/vrep_sim.dir/vrep_lib/remoteApi/extApiPlatform.c.o
-/usr/bin/ranlib ../lib/libvrep_sim.a

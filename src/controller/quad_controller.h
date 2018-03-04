@@ -22,7 +22,7 @@ struct PhysicalParamer{
     double arm_length;
     /* 0 -- plus type, 1 -- X type */
     bool type;
-}
+};
 
 struct ControlGain{
     double kp_phi;
@@ -33,7 +33,7 @@ struct ControlGain{
 
     double kp_psi;
     double kd_r;
-}
+};
 
 
 class Quadrotor{
@@ -63,13 +63,13 @@ class Quadrotor{
         std::vector<double> motor_speed_;
 
     public:
-        Quadrotor(double m, double length, bool type, double phi_d, double theta_d, double psi_d);
+        Quadrotor(double m, double length, bool type, double phi_d, double theta_d, double psi_d, double p_d, double q_d, double r_d);
 
         ~Quadrotor(){};
 
         void AttitudeControlEuler();
         void TransitionMatrix();
-}
+};
 
 
 }

@@ -6,10 +6,9 @@
 */
 
 #include <iostream>
-#include <math>
 #include <vector>
 
-#include "quad_control.h"
+#include "quad_controller.h"
 
 using namespace srcl_quad;
 
@@ -22,7 +21,7 @@ Quadrotor::Quadrotor(double m, double length, bool type, double phi_d, double th
 
     /* Desired euler angle */
     ang_d_.roll = phi_d;
-    ang_d_.pitch; = theta_d;
+    ang_d_.pitch = theta_d;
     ang_d_.yaw = psi_d;
 
     /* Desired angular velocity */
@@ -39,7 +38,7 @@ Quadrotor::Quadrotor(double m, double length, bool type, double phi_d, double th
     K_.kd_r = 0.0;
 
     /* Initialize the motor speed */
-    std::vector<double> motor_speed_(4,0,0);
+    std::vector<double> motor_speed_(4,0.0);
 
 }
 
@@ -60,7 +59,7 @@ void Quadrotor::AttitudeControlEuler(){
     std::vector<double> delta_omega (3,0.0);
     delta_omega[0] = K_.kp_phi * error_euler_angle[0] + K_.kd_p * error_angular_velocity[0];
     delta_omega[1] = K_.kp_theta * error_euler_angle[1] + K_.kd_q * error_angular_velocity[1];
-    delat_omega[2] = K_.kp_psi * error_euler_angle[2] + K_.kd_r * error_angular_velocity[2];
+    delta_omega[2] = K_.kp_psi * error_euler_angle[2] + K_.kd_r * error_angular_velocity[2];
 
     /* Calculate the transition matrix */
     if (phy_parameter_.type == 1){
@@ -73,5 +72,5 @@ void Quadrotor::AttitudeControlEuler(){
 }
 
 void Quadrotor::TransitionMatrix(){
-    
+    std::cout << "Here" << std::endl;
 }

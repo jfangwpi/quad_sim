@@ -13,6 +13,6 @@ set(CONTROLLER_LIB_SRC
 )
 
 add_library(controller STATIC ${CONTROLLER_LIB_SRC})
-target_link_libraries(controller)
+#target_link_libraries(controller)
 
 

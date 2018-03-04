@@ -15,7 +15,7 @@
 
 namespace srcl_quad{
 
-struct Postion
+struct Position
 {
     float x;
     float y;

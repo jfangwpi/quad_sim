@@ -24,9 +24,12 @@ set(ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+# Add include directories of third party libraries
+include_directories(${CMAKE_SOURCE_DIR}/third_party/)
 
 ## Add sub source directories
 add_subdirectory(vrep_sim)
 add_subdirectory(controller)
 add_subdirectory(apps)
+#add_subdirectory(third_party)
 

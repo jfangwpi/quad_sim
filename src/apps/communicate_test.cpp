@@ -9,16 +9,26 @@
 #include <vector>
 
 #include "controller/quad_controller.h"
+#include "controller/quad_states.h"
 
 using namespace srcl_quad;
 
+extern "C" {
+    #include "extApi.h"
+    //#include "extApiCustom.h" // custom remote API functions */
+}
+
+
 int main(int argc, char* argv[])
 {
-    /* Physical parameter */
-    double mass = 2;
-    double length = 0.216;
-    bool type = 1;
+    /* Start the communication with vrep */
+    std::string serverIP = "127.0.0.1";
+    int serverPort = 19999;
 
+    /* start a connection with the server */
+    simxInt clientID = simxStart((simxChar*)"127.0.0.1",serverPort,true,true,2000,5);
+
+    QuadrotorState qs;
     /* Desired Euler Angle */
     double phi_d = 0.3;
     double theta_d = 0.2;
@@ -29,8 +39,21 @@ int main(int argc, char* argv[])
     double q_d = 0.0;
     double r_d = 0.0;
 
-    Quadrotor quad(mass, length, type, phi_d, theta_d, psi_d, p_d, q_d, r_d);
-    quad.AttitudeControlEuler();
+    QuadControl quad_control(qs);
+    quad_control.AttitudeControlEuler();
+    //quad.AttitudeControlEuler();
+    // if (clientID != -1){
+    //     std::cout << "INFO: connected to server." << std::endl;
+
+    //     while (simxGetConnectionId(clientID) != -1){
+    //         std::cout << "Enter the loop" << std::endl;
+    //     }
+    //     std::cout << "INFO: Exit control loop" << std::endl;
+    //     simxFinish(clientID);
+    // }
+    // else{
+    //     std::cout << "ERROR: Failed to connect to server" << std::endl;
+    // }
 
 
     return 0;

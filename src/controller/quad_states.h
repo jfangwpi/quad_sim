@@ -12,45 +12,81 @@
 
 #include <iostream>
 #include <vector>
+#include <eigen3/Eigen/Core>
 
 namespace srcl_quad{
 
 struct Position
 {
-    float x;
-    float y;
-    float z;
+    double x;
+    double y;
+    double z;
 };
 
 struct EulerAngle
 {
-    float roll;
-    float pitch;
-    float yaw;
+    double roll;
+    double pitch;
+    double yaw;
 };
 
 struct Quaternion
 {
-    float q0;
-    float q1;
-    float q2;
-    float q3;
+    double q0;
+    double q1;
+    double q2;
+    double q3;
 };
 
 struct Velocity
 {
-    float dx;
-    float dy;
-    float dz;
+    double dx;
+    double dy;
+    double dz;
 };
 
 struct AngularVelocity
 {
-    float d_roll;
-    float d_pitch;
-    float d_yaw;
+    double d_roll;
+    double d_pitch;
+    double d_yaw;
 };
 
+
+class QuadrotorState
+{
+    public: 
+        QuadrotorState();
+        ~QuadrotorState(){};
+
+    public:
+        /* Physical parameter */
+        const double mass;
+        const double g;
+        const double arm_length;
+        /* 0 -- plus type, 1 -- X type */
+        const bool type;
+
+        /* Motor information */
+        const double kM_;
+        const double kF_;
+
+        double w_h_;
+
+        Eigen::Matrix<double, 4, 4> trans_r_;
+
+        /* Actual position */
+        Position pos_;
+        /* Actual Euler Angle */
+        EulerAngle ang_;
+
+        Quaternion quat_;
+
+        /* Velocity */
+        //Velocity vel_;
+        /* Angular velocity */
+        AngularVelocity ang_vel_;
+};
 
 }
 

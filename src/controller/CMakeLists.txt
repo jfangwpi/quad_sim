@@ -10,6 +10,7 @@ add_definitions(-DNON_MATLAB_PARSING -DMAX_EXT_API_CONNECTIONS=255)
 set(CONTROLLER_LIB_SRC
     quad_controller.cpp
     quad_client.cpp
+    quad_states.cpp
 )
 
 add_library(controller STATIC ${CONTROLLER_LIB_SRC})

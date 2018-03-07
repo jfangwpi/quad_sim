@@ -11,18 +11,13 @@
 #define QUAD_CONTROLLER_H_
 
 #include <iostream>
+#include <eigen3/Eigen/Core>
+#include <vector>
+
 #include "quad_states.h"
 #include "quad_client.h"
 
 namespace srcl_quad{
-
-struct PhysicalParamer{
-    double mass;
-    double g = 9.8;
-    double arm_length;
-    /* 0 -- plus type, 1 -- X type */
-    bool type;
-};
 
 struct ControlGain{
     double kp_phi;
@@ -36,39 +31,31 @@ struct ControlGain{
 };
 
 
-class Quadrotor{
+class QuadControl{
     public:
-        /* Physical parameter */
-        PhysicalParamer phy_parameter_;
+        /* Quadrotor states */
+        QuadrotorState qs_;
+
         /* Desired Euler Angle */
         EulerAngle ang_d_;
         /* Desired Angular Velocity */
         AngularVelocity ang_vel_d_;
-        
-        /* Actual position */
-        Position pos_;
-        /* Actual Euler Angle */
-        EulerAngle ang_;
-
-        Quaternion quat_;
-
-        /* Velocity */
-        Velocity vel_;
-        /* Angular velocity */
-        AngularVelocity ang_vel_;
 
         ControlGain K_;
 
         /* Desired speed */
         std::vector<double> motor_speed_;
 
-    public:
-        Quadrotor(double m, double length, bool type, double phi_d, double theta_d, double psi_d, double p_d, double q_d, double r_d);
+        /* Transition matrix */
+        
 
-        ~Quadrotor(){};
+    public:
+        QuadControl(const QuadrotorState& _qs);
+
+        ~QuadControl(){};
 
         void AttitudeControlEuler();
-        void TransitionMatrix();
+        
 };
 
 

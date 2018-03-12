@@ -47,9 +47,9 @@ struct Velocity
 
 struct AngularVelocity
 {
-    double d_roll;
-    double d_pitch;
-    double d_yaw;
+    double p;
+    double q;
+    double r;
 };
 
 
@@ -72,8 +72,10 @@ class QuadrotorState
         const double kF_;
 
         double w_h_;
+        double delta_w_F_;
 
         Eigen::Matrix<double, 4, 4> trans_r_;
+        Eigen::Matrix<double, 4, 4> trans_r_inv_;
 
         /* Actual position */
         Position pos_;

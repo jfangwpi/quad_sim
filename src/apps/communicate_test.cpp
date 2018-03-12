@@ -28,19 +28,18 @@ int main(int argc, char* argv[])
     /* start a connection with the server */
     simxInt clientID = simxStart((simxChar*)"127.0.0.1",serverPort,true,true,2000,5);
 
+    /* Initialize the quadrotor state */
     QuadrotorState qs;
+
     /* Desired Euler Angle */
-    double phi_d = 0.3;
-    double theta_d = 0.2;
-    double psi_d = 0.5;
+    EulerAngle Desired_Euler;
+    Desired_Euler.roll = 0.3;
+    Desired_Euler.pitch = 0.2;
+    Desired_Euler.yaw = 0.5;
 
-    /* Desired angular velocity */
-    double p_d = 0.0;
-    double q_d = 0.0;
-    double r_d = 0.0;
+    AttitudeControlEuler quad_att_control(qs,Desired_Euler);
+    quad_att_control.AttitudeControlLoop();
 
-    QuadControl quad_control(qs);
-    quad_control.AttitudeControlEuler();
     //quad.AttitudeControlEuler();
     // if (clientID != -1){
     //     std::cout << "INFO: connected to server." << std::endl;

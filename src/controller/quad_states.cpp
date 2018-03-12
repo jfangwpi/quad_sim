@@ -21,7 +21,8 @@ QuadrotorState::QuadrotorState():
     arm_length(0.216),
     type(1),
     kM_(1.5e-9),
-    kF_(6.11e-8)
+    kF_(6.11e-8),
+    delta_w_F_(0.0)
 {
     w_h_ = sqrt(mass * g /4/kF_);
 
@@ -38,8 +39,8 @@ QuadrotorState::QuadrotorState():
     quat_.q2 = 0.0;
     quat_.q3 = 0.0;
 
-    ang_vel_.d_roll = 0.0;
-    ang_vel_.d_pitch = 0.0;
-    ang_vel_.d_yaw = 0.0;
+    ang_vel_.p = 0.0;
+    ang_vel_.q = 0.0;
+    ang_vel_.r = 0.0;
 
 }

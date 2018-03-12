@@ -31,7 +31,7 @@ struct ControlGain{
 };
 
 
-class QuadControl{
+class AttitudeControlEuler{
     public:
         /* Quadrotor states */
         QuadrotorState qs_;
@@ -46,15 +46,12 @@ class QuadControl{
         /* Desired speed */
         std::vector<double> motor_speed_;
 
-        /* Transition matrix */
-        
-
     public:
-        QuadControl(const QuadrotorState& _qs);
+        AttitudeControlEuler(const QuadrotorState& _qs, const EulerAngle& angle_d);
 
-        ~QuadControl(){};
+        ~AttitudeControlEuler(){};
 
-        void AttitudeControlEuler();
+        void AttitudeControlLoop();
         
 };
 
